@@ -31,6 +31,7 @@ use App\Http\Controllers\FormpenimbanganController;
 use App\Http\Controllers\KesehatanbalitaController;
 use App\Http\Controllers\LaporandatabalitaController;
 use App\Http\Controllers\LaporanpenimbanganController;
+use App\Models\Keluhanuser;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +116,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function() {
     Route::get('/formvitamin', [FormvitaminController::class, 'index']);
     Route::get('/formartikel', [FormartikelController::class, 'index']);
     Route::get('/keluhanadmin', [KeluhanadminController::class, 'index']);
+    Route::get('/keluhan/edit/{id}', [KeluhanadminController::class, 'edit'])->name('keluhan.edit');
+    Route::post('/keluhan/update/{id}', [KeluhanadminController::class, 'update'])->name('keluhan.update');
 
     //admin laporan
     Route::get('/laporandataibu', [LaporandataIbuController::class, 'index']);
@@ -141,9 +144,9 @@ Route::middleware(['auth', 'CheckRole:user'])->group(function() {
     Route::get('/hasil', [Hasilcek1Controller::class,'index']);
     Route::get('/hasil2', [Hasilcek2Controller::class,'index']);
     Route::any('/tlght', [Hasilcek2Controller::class,'index']);
-    Route::get('/keluhanuser', [KeluhanuserController::class,'index']);
     Route::get('/kesehatanibu', [KesehatanibuController::class, 'index']);
     Route::get('/kesehatanbalita',[KesehatanbalitaController::class, 'index']);
-
-
+    
+    Route::get('/keluhanuser', [KeluhanuserController::class,'index']);
+    Route::post('/keluhan/store', [KeluhanuserController::class, 'store'])->name('keluhan.store');
 });
