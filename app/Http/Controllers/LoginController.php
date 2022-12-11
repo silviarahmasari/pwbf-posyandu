@@ -128,7 +128,6 @@ class LoginController extends Controller
         'email'=>'required|email|unique:users',
         'password'=>'required',
         'cpassword'=> 'required|same:password',
-        'role'=>'required'
      ]);
 
      User::create([
